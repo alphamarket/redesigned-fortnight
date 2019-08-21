@@ -1,4 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/globals.dart';
+import 'DrawerWidget.dart';
 
 class HistoryPage extends StatefulWidget {
   HistoryPage({Key key, this.title = "تاریخچه", this.history})
@@ -45,6 +48,7 @@ class _HistoryPageState extends State<HistoryPage> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
+      drawer: DrawerWidget(),
       body: SingleChildScrollView(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
@@ -77,12 +81,22 @@ class _HistoryPageState extends State<HistoryPage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-        backgroundColor: Colors.blue,
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      floatingActionButton: Stack(
+        children: <Widget>[
+          Padding(
+            padding: EdgeInsets.only(right: 30),
+            child: Align(
+              alignment: Alignment.bottomRight,
+              child: FloatingActionButton(
+                onPressed: () => Navigator.pop(context),
+                tooltip: 'back',
+                child: Icon(Icons.arrow_back),
+                backgroundColor: Colors.blue,
+              ), // This trailing comma makes auto-formatting nicer for build methods.
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

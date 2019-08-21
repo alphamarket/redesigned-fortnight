@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-//import 'utilites.dart';
+import 'package:flutter_app/globals.dart';
+import 'DrawerWidget.dart';
 import 'HistoryPage.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key key, this.title}) : super(key: key);
+  HomePage({Key key, this.title = "صفحه اصلی"}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -26,7 +27,7 @@ class _HomePageState extends State<HomePage> {
 
   void _incrementCounter() {
     // test if history is null?
-    if(_history == null) _history = List<String>();
+    if (_history == null) _history = List<String>();
 
     setState(() {
       // This call to setState tells the Flutter framework that something has
@@ -51,9 +52,9 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBar(
           // Here we take the value from the MyHomePage object that was created by
           // the App.build method, and use it to set our appbar title.
-          title: Directionality(
-              textDirection: TextDirection.rtl, child: Text(widget.title)),
+          title: Text(widget.title),
         ),
+        drawer: DrawerWidget(),
         body: Center(
           // Center is a layout widget. It takes a single child and positions it
           // in the middle of the parent.
@@ -75,7 +76,7 @@ class _HomePageState extends State<HomePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                'You have pushed the button this many times:',
+                'تعداد دفعات کلیک کردن دکمه:',
               ),
               Text(
                 '$_counter',
@@ -104,10 +105,11 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.symmetric(horizontal: 30.0),
               child: Align(
                 alignment: Alignment.bottomRight,
-                child: FloatingActionButton(
+                child: FloatingActionButton.extended(
                   heroTag: "home_history_btn",
                   onPressed: _incrementCounter,
-                  child: Icon(Icons.plus_one),
+                  icon: Icon(Icons.add),
+                  label: Text('ایجاد قرارداد')
                 ),
               ),
             ),
